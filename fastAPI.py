@@ -93,7 +93,7 @@ async def search_similar_images(file: UploadFile = File(...)):
         print(f"Unexpected error: {e}")
         raise HTTPException(status_code=500, detail="Internal server error")
 
-# 파일 업로드 엔드포인트
+# 파일 업로드
 UPLOAD_FOLDER = "uploads"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
