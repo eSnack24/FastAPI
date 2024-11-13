@@ -73,7 +73,7 @@ async def search_similar_images(file: UploadFile = File(...)):
             new_embedding = model.get_image_features(**inputs).squeeze().numpy()
 
         # ChromaDB에서 유사 이미지 검색
-        results = collection.query(query_embeddings=[new_embedding], n_results=2)
+        results = collection.query(query_embeddings=[new_embedding], n_results=5)
         similar_images = results["documents"]
 
         # 유사 이미지 검색 결과를 Spring 서버로 보내기
