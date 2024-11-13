@@ -62,7 +62,7 @@ load_image_embeddings()
 
 SPRING_SERVER_URL = "http://localhost:8080/api/v1/saveState"
 
-# 유사 이미지 검색 엔드포인트
+# 유사 이미지 검색
 @app.post("/search")
 async def search_similar_images(file: UploadFile = File(...)):
     try:
