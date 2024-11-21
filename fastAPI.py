@@ -41,7 +41,7 @@ def get_image_embedding(image_path):
         return None
 
 # 이미지 폴더 경로
-image_folder = "C:\\zzz\\snack"
+image_folder = "C:\\upload\\product"
 app.mount("/static", StaticFiles(directory=image_folder), name="static")
 
 # 이미지 폴더에서 모든 이미지 임베딩을 ChromaDB에 저장
@@ -60,7 +60,7 @@ def load_image_embeddings():
 # 이미지 임베딩을 로드
 load_image_embeddings()
 
-SPRING_SERVER_URL = "http://localhost:8080/api/v1/saveState"
+SPRING_SERVER_URL = "http://10.10.10.128:8080/api/v1/saveState"
 
 # 유사 이미지 검색
 @app.post("/search")
@@ -94,7 +94,7 @@ async def search_similar_images(file: UploadFile = File(...)):
         raise HTTPException(status_code=500, detail="Internal server error")
 
 # 파일 업로드
-UPLOAD_FOLDER = "uploads"
+UPLOAD_FOLDER = "C:\\upload\\user"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 @app.post("/upload")
