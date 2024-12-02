@@ -10,14 +10,13 @@ import os
 import requests
 
 app = FastAPI()
-
 # CORS 설정
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
+    allow_origins=["https://esnack24.store"],
+    allow_methods=["GET", "POST", "PUT", "DELETE"],
     allow_headers=["*"],
+    allow_credentials=True,
 )
 
 # CLIP 모델 및 프로세서 로드
