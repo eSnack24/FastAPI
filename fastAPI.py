@@ -40,8 +40,9 @@ def get_image_embedding(image_path):
         print(f"Error: {image_path} is not a valid image.")
         return None
 
-# 이미지 폴더 경로
-image_folder = "C:\\upload\\product"
+# 이미지 폴더 경로 (환경에 맞게 수정)
+image_folder = os.path.join(os.getcwd(), "upload", "product")  # 상대 경로로 수정
+os.makedirs(image_folder, exist_ok=True)  # 경로가 없으면 생성
 app.mount("/static", StaticFiles(directory=image_folder), name="static")
 
 # 이미지 폴더에서 모든 이미지 임베딩을 ChromaDB에 저장
@@ -94,7 +95,7 @@ async def search_similar_images(file: UploadFile = File(...)):
         raise HTTPException(status_code=500, detail="Internal server error")
 
 # 파일 업로드
-UPLOAD_FOLDER = "C:\\upload\\user"
+UPLOAD_FOLDER = os.path.join(os.getcwd(), "upload", "user")  # 상대 경로로 수정
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 @app.post("/upload")
