@@ -60,7 +60,7 @@ def load_image_embeddings():
 # 이미지 임베딩을 로드
 load_image_embeddings()
 
-SPRING_SERVER_URL = "http://10.10.10.128:8080/api/v1/saveState"
+SPRING_SERVER_URL = "http://3.34.191.185:8080/api/v1/saveState"
 
 # 유사 이미지 검색
 @app.post("/search")
@@ -116,4 +116,4 @@ async def upload_file(file: UploadFile = File(...)):
 # FastAPI 애플리케이션 실행 (Uvicorn)
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="127.0.0.1", port=9000)
+    uvicorn.run(app, host="0.0.0.0", port=9000)
