@@ -1,0 +1,7 @@
+fastapi
+uvicorn[standard]
+pillow
+torch
+transformers
+chromadb
+requests
