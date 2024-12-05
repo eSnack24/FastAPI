@@ -10,13 +10,14 @@ import os
 import requests
 
 app = FastAPI()
+
 # CORS 설정
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
-    allow_credentials=True,
 )
 
 # CLIP 모델 및 프로세서 로드
@@ -39,9 +40,14 @@ def get_image_embedding(image_path):
         print(f"Error: {image_path} is not a valid image.")
         return None
 
-# 이미지 폴더 경로 (환경에 맞게 수정)
-image_folder = os.path.join(os.getcwd(), "upload", "product")  # 상대 경로로 수정
-os.makedirs(image_folder, exist_ok=True)  # 경로가 없으면 생성
+# 현재 스크립트 파일의 디렉터리
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+
+
+# 이미지 폴더 경로
+image_folder = os.path.join(BASE_DIR, "upload", "product")
+os.makedirs(image_folder, exist_ok=True)
 app.mount("/static", StaticFiles(directory=image_folder), name="static")
 
 # 이미지 폴더에서 모든 이미지 임베딩을 ChromaDB에 저장
@@ -93,10 +99,12 @@ async def search_similar_images(file: UploadFile = File(...)):
         print(f"Unexpected error: {e}")
         raise HTTPException(status_code=500, detail="Internal server error")
 
-# 파일 업로드
-UPLOAD_FOLDER = os.path.join(os.getcwd(), "upload", "user")  # 상대 경로로 수정
-os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
+
+# 사용자 업로드 폴더 경로
+UPLOAD_FOLDER = os.path.join(BASE_DIR, "upload", "user")
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+# 파일 업로드
 @app.post("/upload")
 async def upload_file(file: UploadFile = File(...)):
     try:
