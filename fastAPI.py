@@ -20,6 +20,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# 기본 경로 추가
+@app.get("/")
+async def root():
+    return {"message": "Welcome to the FastAPI application!"}
+
 # CLIP 모델 및 프로세서 로드
 model = CLIPModel.from_pretrained("openai/clip-vit-base-patch32")
 processor = CLIPProcessor.from_pretrained("openai/clip-vit-base-patch32")
