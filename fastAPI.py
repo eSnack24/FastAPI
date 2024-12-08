@@ -9,7 +9,7 @@ import chromadb
 import os
 import requests
 
-app = FastAPI(root_path="/fastapi")
+app = FastAPI()
 
 # CORS 설정
 app.add_middleware(
