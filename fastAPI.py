@@ -45,13 +45,11 @@ def get_image_embedding(image_path):
         print(f"Error: {image_path} is not a valid image.")
         return None
 
-# 현재 스크립트 파일의 디렉터리
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
 
 # 이미지 폴더 경로
-image_folder = os.path.join(BASE_DIR, "upload", "product")
+image_folder = r"C:\upload\product"
 os.makedirs(image_folder, exist_ok=True)
 app.mount("/static", StaticFiles(directory=image_folder), name="static")
 
@@ -107,7 +105,7 @@ async def search_similar_images(file: UploadFile = File(...)):
 
 
 # 사용자 업로드 폴더 경로
-UPLOAD_FOLDER = os.path.join(BASE_DIR, "upload", "user")
+UPLOAD_FOLDER = r"C:\upload\user"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 # 파일 업로드
 @app.post("/upload")
