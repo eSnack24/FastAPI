@@ -114,6 +114,9 @@ async def upload_file(file: UploadFile = File(...)):
         # 파일 저장 경로 생성
         file_location = os.path.join(UPLOAD_FOLDER, file.filename)
 
+        # 디버깅: 경로 확인
+        print(f"Uploading file to: {file_location}")
+
         # 파일을 서버에 저장
         with open(file_location, "wb") as buffer:
             buffer.write(await file.read())
@@ -123,6 +126,7 @@ async def upload_file(file: UploadFile = File(...)):
     except Exception as e:
         print(f"Error: {e}")
         raise HTTPException(status_code=500, detail="Failed to upload file")
+
 
 # FastAPI 애플리케이션 실행 (Uvicorn)
 if __name__ == "__main__":
