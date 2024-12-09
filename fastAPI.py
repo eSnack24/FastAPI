@@ -49,7 +49,7 @@ def get_image_embedding(image_path):
 
 
 # 이미지 폴더 경로
-image_folder = "/upload/product"
+image_folder = "/home/ec2-user/FastAPI/upload/product"
 os.makedirs(image_folder, exist_ok=True)
 app.mount("/static", StaticFiles(directory=image_folder), name="static")
 
@@ -105,7 +105,7 @@ async def search_similar_images(file: UploadFile = File(...)):
 
 
 # 사용자 업로드 폴더 경로
-UPLOAD_FOLDER = "/upload/user"
+UPLOAD_FOLDER = "/home/ec2-user/FastAPI/upload/user"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 # 파일 업로드
 @app.post("/upload")
