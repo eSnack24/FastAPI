@@ -56,7 +56,7 @@ app.mount("/static", StaticFiles(directory=image_folder), name="static")
 # 이미지 폴더에서 모든 이미지 임베딩을 ChromaDB에 저장
 def load_image_embeddings():
     for image_file in os.listdir(image_folder):
-        if image_file.lower().endswith(('.png', '.jpg', '.jpeg')):
+        if image_file.lower().endswith(('.png', '.jpg', '.jpeg')) and not image_file.startswith("s_"):
             image_path = os.path.join(image_folder, image_file)
             embedding = get_image_embedding(image_path)
             if embedding is not None:
